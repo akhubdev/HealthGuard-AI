@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>HealthGuard AI - Prediction History</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+.history-wrapper{
+padding:40px;
+}
+
+.history-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.search-box{
+padding:10px;
+width:280px;
+border:none;
+border-radius:6px;
+outline:none;
+}
+
+.table-card{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:12px;
+box-shadow:0 0 25px rgba(0,255,255,0.2);
+}
+
+.history-table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+.history-table th{
+padding:12px;
+background:rgba(255,255,255,0.15);
+}
+
+.history-table td{
+padding:10px;
+text-align:center;
+}
+
+.history-table tr:hover{
+background:rgba(255,255,255,0.1);
+}
+
+.delete-btn{
+background:#ef4444;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+.download-btn{
+background:#22c55e;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+.back-btn{
+background:#3b82f6;
+border:none;
+padding:10px 14px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+.risk-low{
+color:#22c55e;
+font-weight:bold;
+}
+
+.risk-medium{
+color:#eab308;
+font-weight:bold;
+}
+
+.risk-high{
+color:#ef4444;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="history-wrapper">
+
+<h1>HealthGuard AI - Prediction History</h1>
+
+<div class="history-header">
+
+<a href="/dashboard">
+<button class="back-btn">
+<i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+</button>
+</a>
+
+<input 
+type="text" 
+id="searchInput" 
+class="search-box"
+placeholder="Search Patient..."
+onkeyup="searchPatient()"
+>
+
+<select id="riskFilter" onchange="filterRisk()" class="search-box">
+<option value="all">All Risk</option>
+<option value="Low Risk">Low Risk</option>
+<option value="Medium Risk">Medium Risk</option>
+<option value="High Risk">High Risk</option>
+</select>
+
+</div>
+
+
+<div class="table-card">
+
+<table id="historyTable" class="history-table">
+
+<tr>
+<th>S.No</th>
+<th>Name</th>
+<th>Age</th>
+<th>BMI</th>
+<th>Blood Pressure</th>
+<th>Cholesterol</th>
+<th>Smoker</th>
+<th>Risk Level</th>
+<th>Risk %</th>
+<th>Report</th>
+<th>Action</th>
+</tr>
+
+{% for row in data %}
+
+<tr>
+
+<td>{{ loop.index }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+<td>{{ row[3] }}</td>
+<td>{{ row[4] }}</td>
+<td>{{ row[5] }}</td>
+<td>{{ row[6] }}</td>
+
+<td>
+
+{% if row[7] == "Low Risk" %}
+<span class="risk-low">Low Risk</span>
+{% elif row[7] == "Medium Risk" %}
+<span class="risk-medium">Medium Risk</span>
+{% else %}
+<span class="risk-high">High Risk</span>
+{% endif %}
+
+</td>
+
+<td>{{ row[8] }}%</td>
+
+<td>
+<a href="/download_report/{{ row[7] }}/{{ row[8] }}/{{ row[1] }}">
+<button class="download-btn">
+<i class="fa-solid fa-download"></i>
+</button>
+</a>
+</td>
+
+<td>
+<a href="/delete/{{ row[0] }}">
+<button class="delete-btn">
+<i class="fa-solid fa-trash"></i>
+</button>
+</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+
+<script>
+
+function searchPatient(){
+
+let input=document.getElementById("searchInput");
+let filter=input.value.toLowerCase();
+let table=document.getElementById("historyTable");
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let td=tr[i].getElementsByTagName("td")[1];
+
+if(td){
+
+let txtValue=td.textContent||td.innerText;
+
+if(txtValue.toLowerCase().indexOf(filter)>-1){
+
+tr[i].style.display="";
+
+}else{
+
+tr[i].style.display="none";
+
+}
+
+}
+
+}
+
+}
+
+function filterRisk(){
+
+let filter=document.getElementById("riskFilter").value;
+let table=document.getElementById("historyTable");
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let td=tr[i].getElementsByTagName("td")[7];
+
+if(td){
+
+let txtValue=td.textContent||td.innerText;
+
+if(filter=="all"||txtValue==filter){
+
+tr[i].style.display="";
+
+}else{
+
+tr[i].style.display="none";
+
+}
+
+}
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

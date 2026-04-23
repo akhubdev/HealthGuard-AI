@@ -1,0 +1,162 @@
+
+
+body{
+background:radial-gradient(circle at top,#1f4c5c,#0f2027);
+font-family:'Segoe UI',sans-serif;
+margin:0;
+color:white;
+}
+
+
+/* Sidebar */
+
+.sidebar{
+height:100vh;
+background:rgba(0,0,0,0.6);
+position:fixed;
+width:230px;
+padding-top:25px;
+box-shadow:0 0 30px rgba(0,0,0,0.6);
+}
+
+.sidebar h2{
+text-align:center;
+margin-bottom:40px;
+font-size:22px;
+}
+
+.sidebar a{
+display:block;
+padding:14px 22px;
+color:#ddd;
+text-decoration:none;
+transition:0.3s;
+}
+
+.sidebar a:hover{
+background:rgba(255,255,255,0.12);
+padding-left:30px;
+}
+
+.logout{
+color:#ff4d4d !important;
+}
+
+
+/* Main */
+
+.main{
+margin-left:240px;
+padding:40px;
+}
+
+
+/* Topbar */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+padding:15px 20px;
+background:rgba(255,255,255,0.08);
+border-radius:12px;
+backdrop-filter:blur(10px);
+}
+
+
+/* Cards */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-bottom:40px;
+}
+
+.card{
+background:rgba(255,255,255,0.12);
+padding:25px;
+border-radius:18px;
+backdrop-filter:blur(12px);
+box-shadow:0 0 25px rgba(0,255,255,0.15);
+transition:0.3s;
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 40px rgba(0,255,255,0.4);
+}
+
+.card i{
+font-size:22px;
+margin-bottom:10px;
+display:block;
+}
+
+.low{color:#22c55e}
+.medium{color:#eab308}
+.high{color:#ef4444}
+
+.card h3{
+font-size:15px;
+opacity:0.9;
+}
+
+.card h2{
+font-size:30px;
+margin-top:5px;
+}
+
+
+/* Charts */
+
+.chart-box{
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:18px;
+box-shadow:0 0 30px rgba(0,255,255,0.2);
+margin-bottom:35px;
+}
+
+.charts-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.chart-container{
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:18px;
+box-shadow:0 0 30px rgba(0,255,255,0.2);
+}
+
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.main{
+margin-left:0;
+}
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+}
+
+}
+
+
+.alert-box{
+    background: rgba(255,255,255,0.08);
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    text-align:center;
+    font-weight:bold;
+    color:#fff;
+}

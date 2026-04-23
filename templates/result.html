@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>HealthGuard AI Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+.result-container{
+text-align:center;
+padding-top:40px;
+color:white;
+}
+
+.meter-box{
+width:600px;
+margin:auto;
+margin-top:40px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.advice-box{
+width:600px;
+margin:auto;
+margin-top:30px;
+background:rgba(255,255,255,0.1);
+padding:20px;
+border-radius:12px;
+}
+
+.advice-box ul{
+text-align:left;
+}
+
+.patient-box{
+width:600px;
+margin:auto;
+margin-top:20px;
+background:rgba(255,255,255,0.1);
+padding:20px;
+border-radius:12px;
+}
+
+/* NEW DOCTOR BOX */
+
+.doctor-box{
+width:600px;
+margin:auto;
+margin-top:25px;
+background:rgba(255,255,255,0.1);
+padding:20px;
+border-radius:12px;
+border-left:5px solid #00ffd5;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="result-container">
+
+<h1>HealthGuard AI - Diabetes Risk Result</h1>
+
+<h2>Patient: {{ name }}</h2>
+
+<h3>Risk Level: {{ risk }}</h3>
+
+<h3>Risk Percentage: {{ percentage }}%</h3>
+
+<div class="meter-box">
+
+<canvas id="meterCanvas" width="500" height="250"></canvas>
+
+</div>
+
+<!-- Patient Info -->
+
+<div class="patient-box">
+
+<h3>Patient Details</h3>
+
+<p><b>Age:</b> {{ age }}</p>
+<p><b>BMI:</b> {{ bmi }}</p>
+<p><b>High Blood Pressure:</b> {{ highbp }}</p>
+<p><b>High Cholesterol:</b> {{ highchol }}</p>
+<p><b>Smoker:</b> {{ smoker }}</p>
+
+</div>
+
+<!-- AI Recommendations -->
+
+<div class="advice-box">
+
+<h3>AI Health Recommendations</h3>
+
+<ul>
+{% for item in advice %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+<!-- AI DOCTOR RECOMMENDATION -->
+
+<div class="doctor-box">
+
+<h3>AI Doctor Recommendation</h3>
+
+<p>{{ doctor_recommendation }}</p>
+
+</div>
+
+<!-- RECOMMENDED DOCTORS -->
+
+<div class="doctor-box">
+
+<h3>Recommended Doctors</h3>
+
+{% for doctor in doctor_list %}
+
+<div style="margin-top:15px;padding:10px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;">
+
+<p><b>Doctor:</b> {{ doctor.name }}</p>
+<p><b>Specialist:</b> {{ doctor.specialist }}</p>
+<p><b>Hospital:</b> {{ doctor.hospital }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<br>
+
+<a href="/download_report/{{ risk }}/{{ percentage }}/{{ name }}">
+<button>Download Medical Report</button>
+</a>
+
+<br><br>
+
+<a href="/predict">Check Another Patient</a>
+
+</div>
+
+<script>
+
+var target = parseFloat("{{ percentage }}");
+
+const canvas = document.getElementById("meterCanvas");
+const ctx = canvas.getContext("2d");
+
+let needle = 0;
+
+function drawMeter(value){
+
+ctx.clearRect(0,0,500,250);
+
+const centerX = 250;
+const centerY = 200;
+const radius = 150;
+
+/* LOW */
+
+ctx.beginPath();
+ctx.lineWidth = 25;
+ctx.strokeStyle = "#2ecc71";
+ctx.arc(centerX,centerY,radius,Math.PI,Math.PI*1.3);
+ctx.stroke();
+
+/* MEDIUM */
+
+ctx.beginPath();
+ctx.strokeStyle = "#f1c40f";
+ctx.arc(centerX,centerY,radius,Math.PI*1.3,Math.PI*1.7);
+ctx.stroke();
+
+/* HIGH */
+
+ctx.beginPath();
+ctx.strokeStyle = "#e74c3c";
+ctx.arc(centerX,centerY,radius,Math.PI*1.7,Math.PI*2);
+ctx.stroke();
+
+/* NEEDLE */
+
+let angle = Math.PI + (value/100)*Math.PI;
+
+ctx.save();
+
+ctx.translate(centerX,centerY);
+ctx.rotate(angle);
+
+ctx.beginPath();
+ctx.moveTo(0,0);
+ctx.lineTo(radius-40,0);
+
+ctx.lineWidth = 6;
+ctx.strokeStyle = "black";
+ctx.stroke();
+
+ctx.restore();
+
+}
+
+function animate(){
+
+if(needle < target){
+
+needle += 1;
+
+drawMeter(needle);
+
+requestAnimationFrame(animate);
+
+}else{
+
+drawMeter(target);
+
+}
+
+}
+
+drawMeter(0);
+animate();
+
+</script>
+
+</body>
+
+</html>
+
+
+
+

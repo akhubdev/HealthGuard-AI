@@ -1,0 +1,138 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>HealthGuard AI Reports</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+.reports-wrapper{
+padding:40px;
+}
+
+.reports-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.back-btn{
+
+background:#6366f1;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+.export-btn{
+
+background:#3b82f6;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+.report-card{
+
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 25px rgba(0,255,255,0.2);
+
+}
+
+.status-active{
+
+color:#22c55e;
+font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="reports-wrapper">
+
+<h1>HealthGuard AI Reports</h1>
+
+<div class="reports-header">
+
+<a href="/dashboard">
+<button class="back-btn">
+<i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+</button>
+</a>
+
+</div>
+
+<p>
+Doctors and healthcare administrators can download patient prediction data and manage medical reports.
+</p>
+
+<br>
+
+<div class="cards">
+
+<div class="report-card">
+
+<h3><i class="fa-solid fa-file-medical"></i> Total Reports</h3>
+
+<p>
+Reports are generated automatically after each prediction.
+</p>
+
+</div>
+
+
+<div class="report-card">
+
+<h3><i class="fa-solid fa-download"></i> Export Patient Data</h3>
+
+<p>Download all prediction data as CSV file.</p>
+
+<a href="/download_csv">
+
+<button class="export-btn">
+<i class="fa-solid fa-file-csv"></i> Export CSV
+</button>
+
+</a>
+
+</div>
+
+
+<div class="report-card">
+
+<h3><i class="fa-solid fa-heart-pulse"></i> System Status</h3>
+
+<p class="status-active">
+<i class="fa-solid fa-circle-check"></i> Active
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

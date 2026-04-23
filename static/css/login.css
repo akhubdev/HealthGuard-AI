@@ -1,0 +1,63 @@
+
+
+.login-body{
+height:100vh;
+background: linear-gradient(135deg,#1f4037,#99f2c8);
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:'Segoe UI',sans-serif;
+}
+
+.login-container{
+width:100%;
+max-width:420px;
+padding:20px;
+}
+
+.login-card{
+background: rgba(255,255,255,0.15);
+backdrop-filter: blur(10px);
+border-radius:20px;
+padding:40px;
+box-shadow:0 10px 40px rgba(0,0,0,0.3);
+color:white;
+}
+
+.app-title{
+font-weight:700;
+font-size:28px;
+}
+
+.subtitle{
+font-size:14px;
+opacity:0.9;
+}
+
+.form-control{
+border-radius:10px;
+border:none;
+padding:12px;
+}
+
+.btn-login{
+background: linear-gradient(90deg,#00c6ff,#0072ff);
+border:none;
+border-radius:30px;
+padding:12px;
+font-weight:600;
+color:white;
+transition:0.3s;
+}
+
+.btn-login:hover{
+transform:scale(1.05);
+box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+.footer-text{
+text-align:center;
+margin-top:20px;
+font-size:12px;
+opacity:0.8;
+}

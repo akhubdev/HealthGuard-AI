@@ -1,0 +1,115 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>HealthGuard AI Settings</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+.settings-wrapper{
+padding:40px;
+}
+
+.settings-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.back-btn{
+background:#6366f1;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.settings-card{
+
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 25px rgba(0,255,255,0.2);
+
+}
+
+.status-connected{
+color:#22c55e;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="settings-wrapper">
+
+<h1>System Settings</h1>
+
+<div class="settings-header">
+
+<a href="/dashboard">
+<button class="back-btn">
+<i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+</button>
+</a>
+
+</div>
+
+<div class="cards">
+
+<div class="settings-card">
+
+<h3><i class="fa-solid fa-code"></i> System Version</h3>
+
+<p>HealthGuard AI v1.0</p>
+
+</div>
+
+
+<div class="settings-card">
+
+<h3><i class="fa-solid fa-database"></i> Database</h3>
+
+<p class="status-connected">
+<i class="fa-solid fa-circle-check"></i> Connected
+</p>
+
+</div>
+
+
+<div class="settings-card">
+
+<h3><i class="fa-solid fa-brain"></i> AI Model</h3>
+
+<p>Diabetes Risk Predictor</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
