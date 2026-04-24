@@ -19,7 +19,8 @@ app.secret_key = "healthguard_secret"
 
 create_tables()
 
-model = joblib.load("diabetes_model.pkl")
+model_path = os.path.join(os.path.dirname(__file__), "diabetes_model.pkl")
+model = joblib.load(model_path)
 
 
 # ---------------- DOCTOR DATABASE ----------------
@@ -509,3 +510,6 @@ def download_report(risk, percentage, name):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+
+
+
