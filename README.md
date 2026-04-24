@@ -24,6 +24,13 @@ HealthGuard AI is an AI-powered healthcare analytics system that predicts diabet
 
 https://healthguard-ai-x9xd.onrender.com
 
+## Demo Login
+
+Use the following credentials to test the application:
+
+Username: admin
+Password: admin123
+
 ## Author
 
 Akash Das  
