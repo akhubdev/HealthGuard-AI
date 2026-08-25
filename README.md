@@ -29,7 +29,7 @@ https://healthguard-ai-x9xd.onrender.com
 Use the following credentials to test the application:
 
 Username: admin
-Password: admin1234
+Password: 1234
 
 ## Author
 
